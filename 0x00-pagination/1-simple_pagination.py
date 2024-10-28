@@ -36,10 +36,18 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            assert type(page) == int and type(page_size) == int
-            assert page > 0 and page_size > 0
-            try:
-                idxs = index_range(page, page_size)
-                return self.dataset()[idxs[0]: idxs[1]]
-            except IndexError:
-                return []
+        """retuns page according to index range"""
+        assert type(page) == int and type(page_size) == int
+        assert page > 0 and page_size > 0
+        idxs = index_range(page, page_size)
+        data = self.dataset()
+        if idxs[0] > len(data) or idxs[1] > len(data):
+            return []
+        return data[idxs[0]: idxs[1]]
+        '''
+        try:
+            idxs = index_range(page, page_size)
+            return self.dataset()[idxs[0]: idxs[1]]
+        except IndexError:
+            return []
+        '''
