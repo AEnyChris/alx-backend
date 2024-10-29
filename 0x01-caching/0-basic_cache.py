@@ -9,7 +9,7 @@ class BasicCache(BaseCaching):
         """update the cache with given key and item"""
         if key and item:
             self.cache_data.update({key: item})
-    
+
     def get(self, key):
         """
         return value of given key
